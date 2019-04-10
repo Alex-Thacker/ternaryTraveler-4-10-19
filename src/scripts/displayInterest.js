@@ -5,6 +5,8 @@ import apiManager from "./apiManager"
 import basicHTML from "./basicHTML"
 //createElement
 //clearContainer
+import eventHandler from "./eventHandler"
+//handleEditButton
 
 export default {
     displayInterest () {
@@ -33,14 +35,14 @@ export default {
 
                 let editInterestButton = basicHTML.createElement("button", `editButton--${object.id}`, "Edit")
                 innerDiv.appendChild(editInterestButton)
-                editInterestButton.addEventListener("click", () => {
-                    console.log("edit Button clicked")
+                editInterestButton.addEventListener("click", (event) => {
+                    eventHandler.handleEditButton(event)
                 })
 
                 let deleteInterestButton = basicHTML.createElement("button", `deleteButton--${object.id}`, "Delete")
                 innerDiv.appendChild(deleteInterestButton)
                 deleteInterestButton.addEventListener("click", () => {
-                    console.log("delete button clicked")
+                    eventHandler.handleDeleteButton()
                 })
 
                 displayInterestDiv.appendChild(innerDiv)

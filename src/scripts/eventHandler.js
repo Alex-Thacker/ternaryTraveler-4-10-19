@@ -5,6 +5,8 @@ import displayInterest from "./displayInterest"
 //displayInterest
 import basicHTML from "./basicHTML"
 //clearContainer
+import editForm from "./editForm"
+import interestForm from "./interestForm"
 
 
 export default {
@@ -31,6 +33,44 @@ export default {
                 basicHTML.clearContainer(displayInterestContainer)
                 container.appendChild(displayInterest.displayInterest())
             })
+    },
+    handleEditButton () {
+        editForm.createEditForm(event)
+
+    },
+    handleSaveEditButton () {
+        let container = document.querySelector("#display-container")
+        let eventContainer = event.target.parentNode
+        let singleId = eventContainer.id.split("--")[1]
+        
+        let costValue = document.querySelector(`#costInput--${singleId}`).value
+        let reviewValue = document.querySelector(`#reviewInput--${singleId}`).value
+
+        let editObject = {
+            cost: Number(costValue),
+            review: reviewValue
+        }
+        console.log(editObject)
+        apiManager.patchInterest(singleId, editObject)
+        .then(() => {
+            basicHTML.clearContainer(container)
+            container.appendChild(interestForm.createForm())
+            container.appendChild(displayInterest.displayInterest())
+        })
+    },
+    handleDeleteButton () {
+        let container = document.querySelector("#display-container")
+        let eventContainer = event.target.parentNode
+        let singleId = eventContainer.id.split("--")[1]
+
+        if (window.confirm("Are you sure you want to delete?")) {
+            apiManager.deleteInterest(singleId)
+            .then(() => {
+                basicHTML.clearContainer(container)
+                container.appendChild(interestForm.createForm())
+                container.appendChild(displayInterest.displayInterest())
+            })
+        }
     }
 }
 

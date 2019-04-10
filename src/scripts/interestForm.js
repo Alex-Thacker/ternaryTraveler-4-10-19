@@ -24,6 +24,7 @@ export default {
         
         let costLabel = basicHTML.createElement("label", undefined, "Cost: ")
         let costInput = basicHTML.createElement("input", "costInput")
+        costInput.type = "number"
 
         formFragment.appendChild(costLabel)
         formFragment.appendChild(costInput)
