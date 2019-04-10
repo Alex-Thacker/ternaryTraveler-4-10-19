@@ -1,0 +1,1 @@
+//display points of interest when user first opens app

@@ -1,0 +1,1 @@
+//event listeners.  DELETE- when user clicks delete, a alert message appears and when they click confirm, the insterest is deleted, if they click cancel then the alert goes away and interest isn't deleted. 
