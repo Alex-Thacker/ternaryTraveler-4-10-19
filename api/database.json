@@ -24,6 +24,22 @@
             "description": "Local market where you can try purchase local products and try the local food",
             "cost": 0.00,
             "review": "Meh"
+        },
+        { 
+            "id": 2,
+            "placeId": 2,
+            "name": "That one Tower in paris",
+            "description": "It was pretty tall i guess",
+            "cost": 0.00,
+            "review": ""
+        },
+        { 
+            "id": 1,
+            "placeId": 3,
+            "name": "A wall",
+            "description": "a wall, cool i guess",
+            "cost": 0.00,
+            "review": ""
         }
     ]
    }

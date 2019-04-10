@@ -4,6 +4,7 @@ import basicHTML from "./basicHTML"
 //createElement
 //clearContainer
 
+
 export default {
     createForm () {
         let formFragment = document.createDocumentFragment()
@@ -28,7 +29,7 @@ export default {
 
         let dropDownLabel = basicHTML.createElement("label", undefined, "Location: ")
         formFragment.appendChild(dropDownLabel)
-        
+
         let dropDownSelect = basicHTML.createElement("select", "dropDownSelect")
 
         let blankOption = basicHTML.createElement("option", "blankOption", "")
@@ -47,6 +48,13 @@ export default {
         dropDownSelect.appendChild(berlinOption)
 
         formFragment.appendChild(dropDownSelect)
+
+        let saveInterestButton = basicHTML.createElement("button", "saveInterestButton", "Save interest")
+        formFragment.appendChild(saveInterestButton)
+
+        saveInterestButton.addEventListener("click", () => {
+            console.log("saveInterestButtonClicked")
+        })
 
         return formFragment
     }   
