@@ -71,6 +71,26 @@ export default {
                 container.appendChild(displayInterest.displayInterest())
             })
         }
+    },
+    handleNewLocationButton () {
+        let container = document.querySelector("#display-container")
+        let prompt = window.prompt("New location name?")
+
+        if (prompt !== null){
+            let placeObject = {
+                name: prompt,
+                visa_required: false
+            }
+            
+            apiManager.postPlace(placeObject)
+            .then(() => {
+                basicHTML.clearContainer(container)
+                container.appendChild(interestForm.createForm())
+                container.appendChild(displayInterest.displayInterest())
+            })
+            
+        }
+
     }
 }
 
@@ -81,3 +101,7 @@ export default {
 // "description": "a wall, cool i guess",
 // "cost": 0.00,
 // "review": ""
+
+// "id": 1,
+// "name": "London",
+// "visa_required": false

@@ -5,58 +5,69 @@ import basicHTML from "./basicHTML"
 //clearContainer
 import eventHandler from "./eventHandler"
 //handleSaveInterestButton
+import apiManager from "./apiManager"
 
 export default {
     createForm () {
         let formFragment = document.createDocumentFragment()
+        let outerDiv = basicHTML.createElement("div", "outerDiv")
 
         let nameLabel = basicHTML.createElement("label",undefined, "Name: ")
         let nameInput = basicHTML.createElement("input", "nameInput")
 
-        formFragment.appendChild(nameLabel)
-        formFragment.appendChild(nameInput)
+        outerDiv.appendChild(nameLabel)
+        outerDiv.appendChild(nameInput)
 
         let descriptionLabel = basicHTML.createElement("label", undefined, "Description: ")
         let descriptionInput = basicHTML.createElement("input", "descriptionInput")
 
-        formFragment.appendChild(descriptionLabel)
-        formFragment.appendChild(descriptionInput)
+        outerDiv.appendChild(descriptionLabel)
+        outerDiv.appendChild(descriptionInput)
         
         let costLabel = basicHTML.createElement("label", undefined, "Cost: ")
         let costInput = basicHTML.createElement("input", "costInput")
         costInput.type = "number"
 
-        formFragment.appendChild(costLabel)
-        formFragment.appendChild(costInput)
+        outerDiv.appendChild(costLabel)
+        outerDiv.appendChild(costInput)
 
         let dropDownLabel = basicHTML.createElement("label", undefined, "Location: ")
-        formFragment.appendChild(dropDownLabel)
+        outerDiv.appendChild(dropDownLabel)
 
         let dropDownSelect = basicHTML.createElement("select", "dropDownSelect")
 
-        // let blankOption = basicHTML.createElement("option", "blankOption", "")
-        // dropDownSelect.appendChild(blankOption)
+        apiManager.getPlace()
+            .then(response => {
+                response.forEach(object => {
+                    let newOption = basicHTML.createElement("option", undefined, object.name)
+                    newOption.value = object.id
+                    dropDownSelect.appendChild(newOption)
+                })
+            })
 
-        let londonOption = basicHTML.createElement("option", "londonOption", "London")
-        londonOption.value = 1
-        dropDownSelect.appendChild(londonOption)
+        outerDiv.appendChild(dropDownSelect)
 
-        let parisOption = basicHTML.createElement("option", "parisOption", "Paris")
-        parisOption.value = 2
-        dropDownSelect.appendChild(parisOption)
-
-        let berlinOption = basicHTML.createElement("option", "berlinOption", "Berlin")
-        berlinOption.value = 3
-        dropDownSelect.appendChild(berlinOption)
-
-        formFragment.appendChild(dropDownSelect)
+        let hr1 = basicHTML.createElement("hr")
+        outerDiv.appendChild(hr1)
 
         let saveInterestButton = basicHTML.createElement("button", "saveInterestButton", "Save interest")
-        formFragment.appendChild(saveInterestButton)
+        outerDiv.appendChild(saveInterestButton)
+
+        let addNewLocationButton = basicHTML.createElement("button", "addNewLocationButton", "Add New Location")
+        outerDiv.appendChild(addNewLocationButton)
+
+        let hr = basicHTML.createElement("hr")
+        outerDiv.appendChild(hr)
+
+        addNewLocationButton.addEventListener("click", () => {
+            eventHandler.handleNewLocationButton()
+        })
 
         saveInterestButton.addEventListener("click", () => {
             eventHandler.handleSaveInterestButton()
         })
+
+        formFragment.appendChild(outerDiv)
 
         return formFragment
     }   
