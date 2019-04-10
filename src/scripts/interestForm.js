@@ -3,7 +3,8 @@
 import basicHTML from "./basicHTML"
 //createElement
 //clearContainer
-
+import eventHandler from "./eventHandler"
+//handleSaveInterestButton
 
 export default {
     createForm () {
@@ -32,19 +33,19 @@ export default {
 
         let dropDownSelect = basicHTML.createElement("select", "dropDownSelect")
 
-        let blankOption = basicHTML.createElement("option", "blankOption", "")
-        dropDownSelect.appendChild(blankOption)
+        // let blankOption = basicHTML.createElement("option", "blankOption", "")
+        // dropDownSelect.appendChild(blankOption)
 
         let londonOption = basicHTML.createElement("option", "londonOption", "London")
-        londonOption.value = "London"
+        londonOption.value = 1
         dropDownSelect.appendChild(londonOption)
 
         let parisOption = basicHTML.createElement("option", "parisOption", "Paris")
-        parisOption.value = "Paris"
+        parisOption.value = 2
         dropDownSelect.appendChild(parisOption)
 
         let berlinOption = basicHTML.createElement("option", "berlinOption", "Berlin")
-        berlinOption.value = "Berlin"
+        berlinOption.value = 3
         dropDownSelect.appendChild(berlinOption)
 
         formFragment.appendChild(dropDownSelect)
@@ -53,7 +54,7 @@ export default {
         formFragment.appendChild(saveInterestButton)
 
         saveInterestButton.addEventListener("click", () => {
-            console.log("saveInterestButtonClicked")
+            eventHandler.handleSaveInterestButton()
         })
 
         return formFragment

@@ -12,6 +12,7 @@ export default {
         apiManager.getInterests()
         .then(response => {
             response.forEach(object => {
+                // console.log(object)
                 let innerDiv = basicHTML.createElement("div", `innerDiv--${object.id}`)
                 let nameInterest = basicHTML.createElement("h1", undefined, `Name of Interest: ${object.name}`)
                 innerDiv.appendChild(nameInterest)
@@ -26,6 +27,21 @@ export default {
                     let reviewInterest = basicHTML.createElement("p", undefined, `Review of Interest: ${object.review}`)
                     innerDiv.appendChild(reviewInterest)
                 }
+
+                let locatedInterest = basicHTML.createElement("p", undefined, `Location of Interest: ${object.place.name}`)
+                innerDiv.appendChild(locatedInterest)
+
+                let editInterestButton = basicHTML.createElement("button", `editButton--${object.id}`, "Edit")
+                innerDiv.appendChild(editInterestButton)
+                editInterestButton.addEventListener("click", () => {
+                    console.log("edit Button clicked")
+                })
+
+                let deleteInterestButton = basicHTML.createElement("button", `deleteButton--${object.id}`, "Delete")
+                innerDiv.appendChild(deleteInterestButton)
+                deleteInterestButton.addEventListener("click", () => {
+                    console.log("delete button clicked")
+                })
 
                 displayInterestDiv.appendChild(innerDiv)
             })
